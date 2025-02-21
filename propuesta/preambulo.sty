@@ -1,0 +1,126 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Estilo de plantilla general de reporte     %     
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{preambulo}[2022/09/12 preambulo]
+
+%%%%%%%%%%%%
+% Paquetes %
+%%%%%%%%%%%%
+
+\usepackage[utf8]{inputenc}         % tener codificación utf-8                                     
+\usepackage[margin=2cm]{geometry}   % ajustar márgenes del documento
+\usepackage{fancyhdr}               % generar encabezados y pies de página
+\usepackage{multirow}               % generar tablas con filas divididas
+\usepackage{amsmath}                % producir expresiones matemáticas
+\usepackage{amssymb}                % obtener más símbolos matemáticos
+\usepackage{mathrsfs}               % utilizar el comando \mathscr{}
+\usepackage{xcolor}                 % utilizar colores 
+\usepackage{circuitikz}             % generar circuitos por medio de tikz 
+\usepackage{graphicx}               % generar figuras
+\usepackage{parskip}                % modificar distancia entre parrafos
+\usepackage[spanish,es-nodecimaldot]{babel} % utilizar textos en español
+\usepackage{siunitx}                % utilizar cantidades con unidades SI
+\usepackage{enumitem}               % crear listas modificadas
+\usepackage{setspace}               % modificar distancia entre líneas de texto
+\usepackage{mathtools}              % provee herramientas matemáticas adicionales
+\usepackage{tikz, pgfplots}         % generar figuras y gráficos vectorizados
+\usepackage{cancel}                 % provee herramientas para componer cancelaciones en ecuaciones
+\usepackage{xargs}                  % definir comandos con más argumentos opcionales
+\usepackage{caption}                % generar encabezados modificados para figuras, tablas, ...
+\usepackage{hyperref}               % generar referencias a documentos, urls, ...
+\usepackage{empheq}                 % generar énfasis para ecuaciones
+\usepackage{listings}               % generar listado de código fuente
+\usepackage{mdframed}               % generar bordes cuadrados alrededor de texto
+\usepackage{booktabs}               % generar tablas con diferentes diseños
+\usepackage{titlesec}               % generar multiples niveles de secciones
+\usepackage{pifont}                 % generar símbolos x y check
+\usepackage{makecell}               % generar tablas con celdas modificadas
+\usepackage{rotating}               % rotar texto
+\usepackage{customdice}             % generar dados
+\usepackage{pdfpages}               % incluir pdfs, como hojas de datos
+\usepackage{fontawesome}            % para mostrar repo de github
+\usepackage[style = ieee]{biblatex} 
+\usepackage{placeins}               % para ???
+\usepackage{svg}                    % para desplegar imagenes vectorizadas svg
+\usepackage{minted}                 % para hacer código inline
+\usepackage[most]{tcolorbox}        % para el comando \code
+\usepackage{dirtree}                % para hacer ???
+\usepackage{caption}            
+\usepackage{lipsum}
+\usepackage{enumitem}
+\usepackage{steinmetz}              % para mostrar fase \phase{}
+\usepackage{needspace}
+\usepackage{longtable}              % para tablas de multiples páginas con el env lontable
+
+\setlist{
+  listparindent=\parindent,
+  parsep=0pt,
+}
+\addbibresource{biblio.bib}
+
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
+%%%%%%%%%%%%%%%%%%%%
+% Paquetes de TiKZ %
+%%%%%%%%%%%%%%%%%%%%
+
+\usetikzlibrary{decorations.markings}   % generar decoraciones sobre figuras
+\usetikzlibrary{arrows.meta}            % generar flechas modificadas
+\usetikzlibrary{positioning}            % para tener más posibilidades de posicionar nodos
+\usetikzlibrary{automata, arrows,shapes.gates.logic.US,shapes.gates.logic.IEC,calc, matrix, shapes, positioning, backgrounds, fit, arrows.meta}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Setups de paquetes y variablees %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pgfplotsset{compat=1.18}   % escoger versión para generación de gráficos
+\hypersetup{                % configuración de referencias con hyperref
+colorlinks=true,
+urlcolor=blue,
+linkcolor=blue
+}
+\setlength{\parindent}{10pt}             % tamaño de sangrías
+\setlength{\headheight}{14.49998pt}     % tamaño de separación entre encabezado y texto
+\addtolength{\topmargin}{-0.49998pt}    % tamaño de margen superior
+\setcounter{secnumdepth}{4}             % generar seccion de 4 niveles
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definiciones de comandos %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\AtBeginDocument{\RenewCommandCopy\qty\SI}  % para generación de cantidades con unidades 
+\newcommand{\boxedeq}[2]{\begin{empheq}[box={\fboxsep=6pt\fbox}]{align}\label{#1}#2\end{empheq}} % generar ecuaciones encasilladas
+\newcommand{\RE}[1]{\mathrm{Re}\{#1\}}      % parte real
+\newcommand{\IM}[1]{\mathrm{Im}\{#1\}}      % parte imaginaria
+\newcommand{\Z}{\mathbb{Z}}                 % numeros enteros
+\newcommand{\N}{\mathbb{N}}                 % numeros naturales
+\newcommand{\C}{\mathbb{C}}                 % numeros complejos
+\newcommand{\R}{\mathbb{R}}                 % numeros reales
+\newcommand{\Li}[1]{\mathscr{L}^{-1}\left\{#1\right\}}  % Laplace inverso
+\renewcommand{\exp}[1]{e^{#1}}              % exponencial a
+\newcommand{\cmark}{\ding{51}}              % checkmark
+\newcommand{\xmark}{\ding{55}}              % x-mark
+\newcommand\sbullet[1][.5]{\mathbin{\vcenter{\hbox{\scalebox{#1}{$\bullet$}}}}}         % generar puntos negros escalables
+\newcommand{\figref}[1]{\hyperref[#1]{Figura~\ref{#1}}}
+
+\newtcbox{\codeinline}{on line, colback=gray!18, colframe=gray!18, boxrule=0pt, arc=4pt, left=2pt, right=2pt, top=2pt, bottom=2pt, boxsep=0pt}
+\newcommand{\code}[1]{\codeinline{\texttt{#1}}}
+\usepackage{stackengine}
+\newcommand{\xor}{\mathrel{\stackinset{c}{}{c}{-0.15ex}{$ \vee $}{$ \bigcirc $}}}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+\definecolor{lightgray}{rgb}{0.9,0.9,0.9}
+
+\usepackage{booktabs,siunitx,makecell}
+\newcommand{\pz}{\phantom{0}}
+\sisetup{
+  group-minimum-digits = 3
+}
+\newcommand{\cuadroref}[1]{\hyperref[#1]{Cuadro~\ref{#1}}}
+\defbibheading{bibliography}[\refname]{\section{\refname}}

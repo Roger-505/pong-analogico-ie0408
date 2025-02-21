@@ -1,0 +1,62 @@
+\section*{Procedimiento}
+
+Este procedimiento describe los pasos necesarios para la implementación del circuito, y se omite la última etapa que incluye el altavoz (efectos de sonido).
+
+\begin{enumerate}
+\item \textbf{Preparación del Área de Trabajo y Componentes}
+\begin{itemize}
+\item Reúne todos los componentes listados en la sección de \textit{Lista de componentes} del documento, incluyendo amplificadores operacionales, flip-flops, comparadores, resistencias, capacitores, potenciómetros y el multiplexor analógico CD4066B.
+\item Verifica el funcionamiento del osciloscopio con modo XY, asegurándote de que esté correctamente calibrado.
+\item Organiza el equipo de medición como fuentes de alimentación DC, multímetros y generadores de señales si es necesario.
+\end{itemize}
+
+\item \textbf{Construcción del Oscilador en Cuadratura}
+\begin{itemize}
+\item Ensambla el circuito oscilador en cuadratura según el diseño proporcionado. Este circuito debe generar dos señales sinusoidales desfasadas 90$^{\circ}$ ( y ).
+\item Asegúrate de que las condiciones de Barkhausen se cumplan: \( R_1 C_1 = R_2 C_2 = R_3 C_3 \quad \text{y} \quad A \cdot \beta = 1 \)
+
+
+
+\item Verifica las salidas en el osciloscopio: una señal debería aparecer en el eje X y la otra en el eje Y, generando un círculo perfecto en el modo XY del osciloscopio.
+\end{itemize}
+
+\item \textbf{Implementación de los Circuitos Desfasadores de 360$^{\circ}$ y Comparadores Ajustables}
+\begin{itemize}
+\item Conecta los desfasadores de 360$^{\circ}$ utilizando potenciómetros de doble gang para ajustar la posición de las paletas A y B. Este circuito permitirá modificar el ángulo de las paletas en la pantalla.
+\item Posteriormente, conecta los comparadores ajustables que generarán ondas cuadradas (A${\mathrm{on}}$ y B${\mathrm{on}}$) para controlar el tamaño de las paletas.
+\item Verifica que al ajustar los potenciómetros, las paletas cambien de tamaño y posición de manera simétrica.
+\end{itemize}
+
+\item \textbf{Montaje del Sistema de Control de Dibujo y Multiplexado}
+\begin{itemize}
+\item Ensambla el circuito comparador con flip-flop que genera la señal de reloj (CLK) y su inversa ($\overline{\text{CLK}}$), necesarias para alternar entre el dibujo de la pelota y las paletas.
+\item Implementa el multiplexor analógico 2 a 1 utilizando el CD4066B. Este circuito seleccionará si se dibujan las paletas o la pelota en función de la señal .
+\item Configura las señales de control PL para gestionar los rebotes de la pelota contra las paletas.
+\end{itemize}
+
+\item \textbf{Control del Movimiento de la Pelota}
+\begin{itemize}
+\item Conecta el circuito flip-flop y el circuito RC para controlar la dinámica de la pelota. Este circuito regula la velocidad de la pelota y su dirección, ajustada mediante potenciómetros que controlan la constante de tiempo .
+\item Implementa los comparadores de ventana para detectar colisiones entre la pelota y las paletas. Verifica que la señal \textit{BOUNCE} se active correctamente en caso de colisión.
+\end{itemize}
+
+\item \textbf{Detección de Límites y Control de Direcciones}
+\begin{itemize}
+\item Ensambla los comparadores de ventana que detectan los límites horizontales y verticales de la pantalla. Estas señales determinarán si la pelota debe rebotar al llegar al borde.
+\item Integra el circuito de control de dirección que invertirá las señales X${\mathrm{rev}}$ y Y${\mathrm{rev}}$, cambiando la trayectoria de la pelota en función de las colisiones detectadas.
+\end{itemize}
+
+\item \textbf{Control de Turnos y Señalización con LEDs}
+\begin{itemize}
+\item Conecta el circuito flip-flop para gestionar los turnos de los jugadores. La señal \textit{TURN} alternará entre los jugadores cada vez que la pelota rebote en una paleta.
+\item Añade LEDs indicadores para mostrar de quién es el turno actual, asegurando que un LED se apague y otro se encienda tras cada rebote.
+\end{itemize}
+
+\item \textbf{Pruebas Finales y Ajustes}
+\begin{itemize}
+\item Conecta todas las etapas del circuito y verifica el funcionamiento global en el osciloscopio. Asegúrate de que las paletas y la pelota se dibujen correctamente y que los controles de posición, tamaño y velocidad funcionen según lo esperado.
+\item Ajusta las constantes de tiempo y las configuraciones de los comparadores para optimizar el rendimiento del circuito.
+\end{itemize}
+\end{enumerate}
+
+
